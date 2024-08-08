@@ -155,6 +155,7 @@ func (m *Member) ldapLogin(account string, password string) (*Member, error) {
 	ldapbase, _ := web.AppConfig.String("ldap_base")
 	ldapfilter, _ := web.AppConfig.String("ldap_filter")
 	ldapaccount, _ := web.AppConfig.String("ldap_account")
+	ldaprealname, _ := web.AppConfig.String("ldap_realname")
 	ldapmail, _ := web.AppConfig.String("ldap_mail")
 	// 判断account是否是email
 	isEmail := false
@@ -191,8 +192,9 @@ func (m *Member) ldapLogin(account string, password string) (*Member, error) {
 	ldap_cn := searchResult.Entries[0].GetAttributeValue("cn")
 	ldap_mail := searchResult.Entries[0].GetAttributeValue(ldapmail)       // "mail"
 	ldap_account := searchResult.Entries[0].GetAttributeValue(ldapaccount) // "sAMAccountName"
+	ldap_realname := searchResult.Entries[0].GetAttributeValue(ldaprealname) // "sn"
 
-	m.RealName = ldap_cn
+	m.RealName = ldap_realname
 	m.Account = ldap_account
 	m.AuthMethod = "ldap"
 	// 如果ldap配置了email

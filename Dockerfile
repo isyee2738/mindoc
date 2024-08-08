@@ -1,4 +1,4 @@
-FROM amd64/golang:1.18.1 AS build
+FROM registry.cn-qingdao.aliyuncs.com/dy-base/golang:1.18.1 AS build
 
 ARG TAG=0.0.1
 
@@ -31,7 +31,7 @@ ADD start.sh /go/src/github.com/mindoc-org/mindoc
 
 
 # Ubuntu 20.04
-FROM ubuntu:focal
+FROM registry.cn-qingdao.aliyuncs.com/dy-base/ubuntu:focal
 
 # 切换默认shell为bash
 SHELL ["/bin/bash", "-c"]
