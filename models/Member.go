@@ -189,7 +189,7 @@ func (m *Member) ldapLogin(account string, password string) (*Member, error) {
 		return m, ErrorMemberPasswordError
 	}
 
-	ldap_cn := searchResult.Entries[0].GetAttributeValue("cn")
+	// ldap_cn := searchResult.Entries[0].GetAttributeValue("cn")
 	ldap_mail := searchResult.Entries[0].GetAttributeValue(ldapmail)       // "mail"
 	ldap_account := searchResult.Entries[0].GetAttributeValue(ldapaccount) // "sAMAccountName"
 	ldap_realname := searchResult.Entries[0].GetAttributeValue(ldaprealname) // "sn"
